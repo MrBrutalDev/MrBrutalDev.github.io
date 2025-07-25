@@ -1,60 +1,217 @@
-# import the streamlit library
-import streamlit as st
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            background-color: #1f2937;
+            color: #ffffff;
+            padding: 20px 40px;
+            cursor: pointer;
+        }
+        nav div ul{
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            list-style-type: none;
+            cursor: pointer;
+        }
+        nav div button{
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            margin-right: 12px;
+        }
+        nav div button:hover{
+            background-color: blue;
+            color: white;
+        }
+        .hero{
+            display: flex;
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 80px;
+        }
+        .hero div h1{
+            font-size: 3rem;
+            font: bold;
+        }
+        .hero div p{
+            margin-right: 30px;
+            padding: 30px 0;
+            color: #a6a7a8;
+            margin-bottom: 1 rem;
+        }
+        .hero div button{
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 120px;
+            font-size: 18px;
+            margin-top: 15px;
+            margin-right: 28px;
+        }
+        .hero div button:hover{
+            background-color: blue;
+        }
+        .hero div img{
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-left: 22px;
+            box-shadow: 0 0 6px black;
+        }
+        .hero div img:hover{
+            transform: rotate(-3deg);
+            transition: all 0.25s ease-in-out;
+        }
+        .clients{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .clients h2{
+            font: bold;
+            font-size: 45px;
+            color: #1f2937;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        .clients div{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            padding: 5px 30px;  
+            gap: 80px;
+        }
+        .clients img{
+            width: 12%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .three-card{
+            display: flex;
+            justify-content: space-evenly;
+            margin: 50px 12%;
+            border: 0.5px solid grey;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 0 10px black;
+        }
+        .card img{
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            padding: 6px;
+        }
+        .card{
+            box-shadow: 0 0 8px grey;
+            border-radius: 12px;
+            margin: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+        .card h3{
+            padding: 8px 0;
+        }
+        .card button{
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            margin:8px 6px;
+            margin-top: 20px;
+        }
+        .card button:hover{
+            background-color: blue;
+        }
+        .card:hover{
+            touch-action: pinch-zoom;
+            transition: 0 0 ease-in-out;
+        }
+    </style>
 
-# give a title to our app
-st.title('Welcome to BMI Calculator')
+</head>
+<body>
+    <header>
+            <nav>
+                <div>
+                    My Logo
+                </div>
+                <div>
+                    <ul class="tabs">
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div>
+                    <button>Sign Up</button>
+                    <button>Log In</button>
+                </div>
+            </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-paragraph">
+            <h1>Hero Title</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quasi cum. Vero praesentium accusamus voluptates architecto, quia quo ut sequi fugiat suscipit illo, ea error asperiores non possimus assumenda? Culpa</p>
+            <button>Sign Up</button>
+            <button>Log In</button>
+        </div>
+        <div>
+            <img width="600px" src="materials/texture.webp" alt="chaicode">
+        </div>
+    </section>
+    <section class="clients">
+        <h2 class="logo-text">
+           Our Clients 
+        </h2>
+        <div>
+            <img src="materials/favicon-512x512.png" alt="">
+            <img src="materials/favicon-512x512.png" alt="">
+            <img src="materials/favicon-512x512.png" alt="">
+            <img src="materials/favicon-512x512.png" alt="">
+            <img src="materials/favicon-512x512.png" alt="">
+        </div>
+    </section 
+    <section>
 
-# TAKE WEIGHT INPUT in kgs
-weight = st.number_input("Enter your weight (in kgs)")
-
-# TAKE HEIGHT INPUT
-# radio button to choose height format
-status = st.radio('Select your height format: ',
-                  ('cms', 'meters', 'feet'))
-
-# compare status value
-if(status == 'cms'):
-    # take height input in centimeters
-    height = st.number_input('Centimeters')
-
-    try:
-        bmi = weight / ((height/100)**2)
-    except:
-        st.text("Enter some value of height")
-
-elif(status == 'meters'):
-    # take height input in meters
-    height = st.number_input('Meters')
-
-    try:
-        bmi = weight / (height ** 2)
-    except:
-        st.text("Enter some value of height")
-
-else:
-    # take height input in feet
-    height = st.number_input('Feet')
-
-    # 1 meter = 3.28
-    try:
-        bmi = weight / (((height/3.28))**2)
-    except:
-        st.text("Enter some value of height")
-
-# check if the button is pressed or not
-if(st.button('Calculate BMI')):
-
-    # print the BMI INDEX
-    st.text("Your BMI Index is {}.".format(bmi))
-
-    # give the interpretation of BMI index
-    if(bmi < 16):
-        st.error("You are Extremely Underweight")
-    elif(bmi >= 16 and bmi < 18.5):
-        st.warning("You are Underweight")
-    elif(bmi >= 18.5 and bmi < 25):
-        st.success("Healthy")
-    elif(bmi >= 25 and bmi < 30):
-        st.warning("Overweight")
-    elif(bmi >= 30):
-        st.error("Extremely Overweight")
+    </section>
+    <section class="three-card">
+        <div class="card">
+            <img src="materials/texture.webp" alt="">
+            <h3> Card Title</h3>
+            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit quam incidunt unde error repudiandae similique consequuntur libero!</h6>
+            <button>Check Out</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="card"> 
+            <img src="materials/texture.webp" alt="">
+            <h3>Card Title</h3>
+            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quas iste saepe culpa dolorem. Optio, dolores ut. Non!</h6>
+            <button>Check Out</button> 
+            <button>Buy Now</button> 
+        </div>
+        <div class="card">
+            <img src="materials/texture.webp" alt="">
+            <h3> Card Title 3</h3>
+            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur fugiat amet necessitatibus, hic corrupti harum laboriosam ullam quod?</h6>
+            <button>Check Out</button>
+            <button>Buy Now</button>
+        </div>
+    </section>
+</body>
+</html>
